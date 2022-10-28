@@ -1,0 +1,56 @@
+﻿@page
+@model ElearnerWebApp.Pages.TopicsTeacher.TopicTeacherModel
+
+@{
+    ViewData["Title"] = "TopicTeacher";
+}
+
+<h1>TopicTeacher</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Topic[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topic[0].SubTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topic[0].ImgUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topic[0].Kind)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topic[0].MeetUrl)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Topic) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubTitle)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.ImgUrl)*@
+                <img class="img-fluid" src="@item.ImgUrl" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kind)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeetUrl)
+            </td>
+            <td>
+                <a href="@item.MeetUrl">Join Now</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
