@@ -1,43 +1,72 @@
-﻿
+﻿@using ElearnerApi.Models
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]Elearner</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="icon" type="image/x-icon" href="~/assets/logo.png">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-warning border-bottom box-shadow mb-3 ">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Elearner</a>
+                <a class="navbar-brand text-white font-weight-bolder" asp-area="" asp-page="/Index"> <img width="50" height="50" src="~/assets/logo.png" /> </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse d-sm-inline-flex">
+                    <ul class="navbar-nav flex-grow-1 justify-content-end">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark justify-content-end" asp-area="" asp-page="/Auth/Logout">Logout</a>
-                            </li>
-                           @* if (@Model.Role == "teacher")
+                            @if (User.IsInRole("teacher") || User.IsInRole("admin"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark justify-content-end" asp-area="" asp-page="/Topics">Topics</a>
+
+                                    <a class="nav-link text-white justify-content-end" asp-area="" asp-page="/Topics/Index">Topics</a>
+
+                                </li>
+                            }
+                            @if (User.IsInRole("teacher"))
+                            {
+                                <li class="nav-item">
+
+                                    <a class="nav-link text-white justify-content-end" asp-area="" asp-page="/TopicsTeacher/TopicTeacher">Classrooms</a>
+
+                                </li>
+                            }
+                            @if (User.IsInRole("admin"))
+                            {
+                                <li class="nav-item">
+
+                                    <a class="nav-link text-white justify-content-end" asp-area="" asp-page="/Coursers/Index">Coursers</a>
+
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark justify-content-end" asp-area="" asp-page="/TopicsTeacher/TopicTeacher">Classrooms</a>
+
+                                    <a class="nav-link text-white justify-content-end" asp-area="" asp-page="/Teachers/Index">Accounts</a>
+
                                 </li>
-                            }*@
+                            }@if (User.IsInRole("user"))
+                            {
+                                <li class="nav-item">
+
+                                    <a class="nav-link text-white justify-content-end" asp-area="" asp-page="/Courses/CourseList">Khóa học</a>
+
+                                </li>
+                            }
+
+                            <li class="nav-item">
+                                <a class="nav-link text-white justify-content-end" asp-area="" asp-page="/Account/Logout">Logout</a>
+                            </li>
                         }
                         @if (!User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark justify-content-end" asp-area="" asp-page="/Auth/Login">Login</a>
+                                <a class="nav-link text-white justify-content-end" asp-area="" asp-page="/Account/Login">Login</a>
                             </li>
                         }
                     </ul>
@@ -53,7 +82,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - ElearnerWebApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2022 - Eleanner
         </div>
     </footer>
 

@@ -1,0 +1,224 @@
+﻿@page
+@using System.Text.RegularExpressions
+@using System.Text
+@model ElearnerWebApp.Pages.Courses.CourseListModel
+
+@{
+    ViewData["Title"] = "Danh Sách Khóa Học";
+    string stk = "104875150320";
+    string name = "Tran Uy Cuong";
+    string bankName = "Vietinbank";
+    string agency = "Tân Bình - Lê Văn Sỹ";
+    string message = "Chúng tôi sẽ kiểm tra và kích hoạt khóa học cho bạn. Xin quý khách đợi từ 2-3 ngày.";
+    string message2 = "Chúng tôi sẽ kiểm tra và gửi tài liệu qua email bạn đã đăng kí. Xin quý khách đợi từ 2-3 ngày.";
+}
+
+<h1>Danh Sách Khóa Học</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên khóa học
+            </th>
+            <th>
+                Thời hạn
+            </th>
+            <th>
+                Loại
+            </th>
+            <th>
+                Giá
+            </th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*   @foreach (var item in Model.Course)
+        {*@
+        @for (int i = 0; i < Model.Course.Count; i++)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Course[i].Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Course[i].Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Course[i].Kind)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Course[i].Price)
+                </td>
+                <td>
+                    <div id="@i" class="overlay">
+                        <div class="popup">
+                            <h2>Xin chào</h2>
+                            <a class="close" href="#">&times;</a>
+                            <div class="content">
+                                Mời bạn thanh toán theo thông tin bên dưới:
+
+                                <ul>
+                                    <li>Tên ngân hàng: @bankName</li>
+                                    <li>Chi Nhánh: @agency</li>
+                                    <li>Số tài khoản: @stk</li>
+                                    <li>Số tiền: @Html.DisplayFor(modelItem => Model.Course[i].Price) VNĐ</li>
+                                    <li>Nội dung: <br> @User.Identity.Name - @Html.DisplayFor(modelItem => Model.Course[i].Name) : @Html.DisplayFor(modelItem => Model.Course[i].Kind)</li>
+                                </ul>
+                                <p>@message</p>
+                                <p>Mọi thắc mắc xin liên hệ qua fanpage: <a href="https://www.facebook.com/profile.php?id=100086365654006">Elearnner</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <a href="#@i">Mua</a>
+                </td>
+            </tr>
+        }
+        @*int c = 0;
+        <tr>
+        <td>
+        @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.Time)
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.Kind)
+        </td>
+
+        <td>
+        @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <div id="popup1" class="overlay">
+        <div class="popup">
+        <h2>Xin chào</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+        Mời bạn thanh toán theo thông tin bên dưới:
+
+        <ul>
+        <li>Tên ngân hàng: </li>
+        <li>Chi Nhánh: </li>
+        <li>Số tài khoảng: @Html.DisplayFor(modelItem => Model.Course[c].Price)</li>
+        <li>Số tiền: </li>
+        <li>Nội dung: <br> @User.Identity.Name - @Html.DisplayFor(modelItem => Model.Course[c].Name) : @Html.DisplayFor(modelItem => Model.Course[c].Kind)</li>
+        </ul>
+        </div>
+        </div>
+        </div>
+        <td>
+        <a href="#popup1">Mua</a>
+        </td>
+        </tr>
+        c++;
+
+        }*@
+
+
+    </tbody>
+</table>
+
+<h1>Tài liệu các loại chứng chỉ</h1>
+
+<div id="popup2" class="overlay">
+    <div class="popup">
+        <h2>Xin chào</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+            Để nhận tài liệu mời bạn thanh toán theo thông tin bên dưới:
+            <ul>
+                <li>Tên ngân hàng: @bankName</li>
+                <li>Chi Nhánh: @agency</li>
+                <li>Số tài khoản: @stk</li>
+                <li>Số tiền: 150000 VNĐ</li>
+                <li>Nội dung: <br> @User.Identity.Name - TOEIC</li>
+            </ul>
+            <p>@message2</p>
+            <p>Mọi thắc mắc xin liên hệ qua fanpage: <a href="https://www.facebook.com/profile.php?id=100086365654006">Elearnner</a></p>
+        </div>
+    </div>
+</div>
+<div id="popup3" class="overlay">
+    <div class="popup">
+        <h2>Xin chào</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+            Để nhận tài liệu mời bạn thanh toán theo thông tin bên dưới:
+            <ul>
+               <li>Tên ngân hàng: @bankName</li>
+                <li>Chi Nhánh: @agency</li>
+                <li>Số tài khoản: @stk</li>
+                <li>Số tiền: 150000 VNĐ</li>
+                <li>Nội dung: <br> @User.Identity.Name - TOEFL</li>
+            </ul>
+            <p>@message2</p>
+            <p>Mọi thắc mắc xin liên hệ qua fanpage: <a href="https://www.facebook.com/profile.php?id=100086365654006">Elearnner</a></p>
+        </div>
+    </div>
+</div>
+<div id="popup4" class="overlay">
+    <div class="popup">
+        <h2>Xin chào</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+            Để nhận tài liệu mời bạn thanh toán theo thông tin bên dưới:
+            <ul>
+                <li>Tên ngân hàng: @bankName</li>
+                <li>Chi Nhánh: @agency</li>
+                <li>Số tài khoản: @stk</li>
+                <li>Số tiền: 150000 VNĐ</li>
+                <li>Nội dung: <br> @User.Identity.Name - IELTS</li>
+            </ul>
+            <p>@message2</p>
+            <p>Mọi thắc mắc xin liên hệ qua fanpage: <a href="https://www.facebook.com/profile.php?id=100086365654006">Elearnner</a></p>
+        </div>
+    </div>
+</div>
+<div id="popup5" class="overlay">
+    <div class="popup">
+        <h2>Xin chào</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+            Để nhận tài liệu mời bạn thanh toán theo thông tin bên dưới:
+            <ul>
+                <li>Tên ngân hàng: @bankName</li>
+                <li>Chi Nhánh: @agency</li>
+                <li>Số tài khoản: @stk</li>
+                <li>Số tiền: 150000 VNĐ</li>
+                <li>Nội dung: <br> @User.Identity.Name - Cambridge ESOL</li>
+            </ul>
+            <p>@message2</p>
+            <p>Mọi thắc mắc xin liên hệ qua fanpage: <a href="https://www.facebook.com/profile.php?id=100086365654006">Elearnner</a></p>
+        </div>
+    </div>
+</div>
+<div id="popup6" class="overlay">
+    <div class="popup">
+        <h2>Xin chào</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+            Để nhận tài liệu mời bạn thanh toán theo thông tin bên dưới:
+            <ul>
+                <li>Tên ngân hàng: @bankName</li>
+                <li>Chi Nhánh: @agency</li>
+                <li>Số tài khoản: @stk</li>
+                <li>Số tiền: 150000 VNĐ</li>
+                <li>Nội dung: <br> @User.Identity.Name - CEFR</li>
+            </ul>
+            <p>@message2</p>
+            <p>Mọi thắc mắc xin liên hệ qua fanpage: <a href="https://www.facebook.com/profile.php?id=100086365654006">Elearnner</a></p>
+        </div>
+    </div>
+</div>
+
+<a href="#popup2" type="button" class="btn btn-outline-primary">TOEIC - 150k</a>
+<a href="#popup3" type="button" class="btn btn-outline-secondary">TOEFL - 150k</a>
+<a href="#popup4" type="button" class="btn btn-outline-success">IELTS - 150k</a>
+<a href="#popup5" type="button" class="btn btn-outline-warning">Cambridge ESOL - 150k</a>
+<a href="#popup6" type="button" class="btn btn-outline-info">CEFR - 150k</a>
+
+

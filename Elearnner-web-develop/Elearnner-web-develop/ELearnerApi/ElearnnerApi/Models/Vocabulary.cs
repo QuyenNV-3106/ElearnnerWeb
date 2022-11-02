@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace ElearnerApi.Models
+namespace ELearnerApi.Models
 {
     public partial class Vocabulary
     {
@@ -12,6 +12,6 @@ namespace ElearnerApi.Models
         public string English { get; set; }
         public string Vietnamese { get; set; }
 
-        public virtual Account User { get; set; }
+        public virtual Accounts User { get; set; }
     }
 }

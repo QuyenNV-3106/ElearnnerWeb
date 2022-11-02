@@ -5,27 +5,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ElearnerApi.Models;
 using ELearnerApi.Models;
 
-namespace ElearnerWebApp.Pages.Topics
+namespace ElearnerWebApp.Pages.Teachers
 {
     public class CreateModel : PageModel
     {
-        private readonly ElearnnerDBContext _context;
+        private readonly ELearnerApi.Models.ElearnnerDBContext _context;
 
-        public CreateModel(ElearnnerDBContext context)
+        public CreateModel(ELearnerApi.Models.ElearnnerDBContext context)
         {
             _context = context;
         }
 
         public IActionResult OnGet()
         {
+        ViewData["TopicId"] = new SelectList(_context.Topics, "Id", "ImgUrl");
             return Page();
         }
 
         [BindProperty]
-        public Topic Topic { get; set; }
+        public ELearnerApi.Models.Accounts Account { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +35,16 @@ namespace ElearnerWebApp.Pages.Topics
                 return Page();
             }
 
-            _context.Topics.Add(Topic);
+            if (_context.Accounts.SingleOrDefault(p => p.Email == Account.Email) is not null)
+            {
+                ViewData["msg"] = "Duplicate email";
+                return Page();
+            }
+
+            Account.Role = "teacher";
+            Account.Status = "enable";
+
+            _context.Accounts.Add(Account);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

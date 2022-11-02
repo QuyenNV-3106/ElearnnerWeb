@@ -19,6 +19,23 @@ namespace ELearnerApi.Controllers
         {
             _context = context;
         }
+        public class login
+        {
+            public string Email { get; set; }
+            public string Password { get; set; }
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<Account>> Login(login account)
+        {
+
+            Account acc = _context.Accounts.SingleOrDefault(p => p.Email == account.Email && p.Password == account.Password);
+            if (acc is null)
+            {
+                return StatusCode(400, new string("User not found"));
+            }
+            return acc;
+        }
 
         // GET: api/Accounts
         [HttpGet]

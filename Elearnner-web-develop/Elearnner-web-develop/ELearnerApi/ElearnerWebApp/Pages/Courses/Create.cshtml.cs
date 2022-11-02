@@ -5,27 +5,31 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ElearnerApi.Models;
 using ELearnerApi.Models;
+using ElearnnerApi;
+using ElearnnerApi.Models;
 
-namespace ElearnerWebApp.Pages.Topics
+namespace ElearnerWebApp.Pages.Courses
 {
     public class CreateModel : PageModel
     {
-        private readonly ElearnnerDBContext _context;
+        private readonly ELearnerApi.Models.ElearnnerDBContext _context;
 
-        public CreateModel(ElearnnerDBContext context)
+        public CreateModel(ELearnerApi.Models.ElearnnerDBContext context)
         {
             _context = context;
         }
+        [BindProperty]
+        public List<Kindd> Kinds { get; set; }
 
         public IActionResult OnGet()
         {
+            ViewData["kind"] = new SelectList(AutoGenerate.GenerateKindTopics(), nameof(Kindd.Kind), nameof(Kindd.Kind));
             return Page();
         }
 
         [BindProperty]
-        public Topic Topic { get; set; }
+        public Course Course { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +39,7 @@ namespace ElearnerWebApp.Pages.Topics
                 return Page();
             }
 
-            _context.Topics.Add(Topic);
+            _context.Courses.Add(Course);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

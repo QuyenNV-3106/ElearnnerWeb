@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace ElearnerApi.Models
+namespace ELearnerApi.Models
 {
     public partial class Course
     {
@@ -18,6 +18,12 @@ namespace ElearnerApi.Models
         public double? Discount { get; set; }
         public DateTime? Duration { get; set; }
         public string Status { get; set; }
+        public string Name { get; set; }
+        public string Time { get; set; }
+        public override string ToString()
+        {
+            return Name;
+        }
 
         public virtual ICollection<Receipt> Receipts { get; set; }
     }

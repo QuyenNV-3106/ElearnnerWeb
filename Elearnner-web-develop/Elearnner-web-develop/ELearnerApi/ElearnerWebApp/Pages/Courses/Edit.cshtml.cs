@@ -2,36 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ELearnerApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ELearnerApi.Models;
+using ElearnnerApi;
 
-namespace ElearnerWebApp.Pages.Topics
+namespace ElearnerWebApp.Pages.Courses
 {
     public class EditModel : PageModel
     {
-        private readonly ElearnnerDBContext _context;
+        private readonly ELearnerApi.Models.ElearnnerDBContext _context;
 
-        public EditModel(ElearnnerDBContext context)
+        public EditModel(ELearnerApi.Models.ElearnnerDBContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Topic Topic { get; set; }
+        public Course Course { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            ViewData["kind"] = new SelectList(AutoGenerate.GenerateKindTopics(), nameof(Course.Kind), nameof(Course.Kind));
             if (id == null)
             {
                 return NotFound();
             }
 
-            Topic = await _context.Topics.FirstOrDefaultAsync(m => m.Id == id);
+            Course = await _context.Courses.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Topic == null)
+            if (Course == null)
             {
                 return NotFound();
             }
@@ -42,12 +44,14 @@ namespace ElearnerWebApp.Pages.Topics
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            ViewData["kind"] = new SelectList(AutoGenerate.GenerateKindTopics(), nameof(Course.Id), nameof(Course.Kind));
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Attach(Topic).State = EntityState.Modified;
+            _context.Attach(Course).State = EntityState.Modified;
 
             try
             {
@@ -55,7 +59,7 @@ namespace ElearnerWebApp.Pages.Topics
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TopicExists(Topic.Id))
+                if (!CourseExists(Course.Id))
                 {
                     return NotFound();
                 }
@@ -68,9 +72,9 @@ namespace ElearnerWebApp.Pages.Topics
             return RedirectToPage("./Index");
         }
 
-        private bool TopicExists(int id)
+        private bool CourseExists(int id)
         {
-            return _context.Topics.Any(e => e.Id == id);
+            return _context.Courses.Any(e => e.Id == id);
         }
     }
 }

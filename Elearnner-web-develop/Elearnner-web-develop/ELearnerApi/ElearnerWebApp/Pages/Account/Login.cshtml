@@ -1,0 +1,40 @@
+﻿@page
+@model ElearnerWebApp.Pages.Account.LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4 d-inline-block">
+        <form method="post" class="d-inline-block">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <span class="text-danger">@ViewData["Message"]</span>
+            <div class="form-group">
+                <label asp-for="Account.Email" class="control-label"></label>
+                <input asp-for="Account.Email" class="form-control" />
+                <span asp-validation-for="Account.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Account.Password" class="control-label"></label>
+                <input asp-for="Account.Password" class="form-control" />
+                <span asp-validation-for="Account.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/Accounts/Register">Đăng ký tài khoản</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

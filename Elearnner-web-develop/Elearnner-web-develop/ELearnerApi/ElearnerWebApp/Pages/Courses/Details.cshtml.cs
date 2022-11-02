@@ -7,18 +7,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ELearnerApi.Models;
 
-namespace ElearnerWebApp.Pages.Topics
+namespace ElearnerWebApp.Pages.Courses
 {
     public class DetailsModel : PageModel
     {
-        private readonly ElearnnerDBContext _context;
+        private readonly ELearnerApi.Models.ElearnnerDBContext _context;
 
-        public DetailsModel(ElearnnerDBContext context)
+        public DetailsModel(ELearnerApi.Models.ElearnnerDBContext context)
         {
             _context = context;
         }
 
-        public Topic Topic { get; set; }
+        public Course Course { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,9 +27,9 @@ namespace ElearnerWebApp.Pages.Topics
                 return NotFound();
             }
 
-            Topic = await _context.Topics.FirstOrDefaultAsync(m => m.Id == id);
+            Course = await _context.Courses.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Topic == null)
+            if (Course == null)
             {
                 return NotFound();
             }

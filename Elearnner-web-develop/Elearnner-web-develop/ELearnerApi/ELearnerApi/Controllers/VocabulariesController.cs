@@ -21,38 +21,45 @@ namespace ELearnerApi.Controllers
         }
 
         // GET: api/Vocabularies
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Vocabulary>>> GetVocabularies()
+        [HttpGet("{userid}")]
+        public async Task<ActionResult<IEnumerable<Vocabulary>>> GetVocabularies(int userid)
         {
-            return await _context.Vocabularies.ToListAsync();
+            var vocabularies = from v in await _context.Vocabularies.ToListAsync()
+                               where userid == v.UserId
+                               select v;
+            return vocabularies.ToList();
         }
 
-        // GET: api/Vocabularies/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Vocabulary>> GetVocabulary(int id)
-        {
-            var vocabulary = await _context.Vocabularies.FindAsync(id);
+        //// GET: api/Vocabularies/5
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Vocabulary>> GetVocabulary(int id)
+        //{
+        //    var vocabulary = await _context.Vocabularies.FindAsync(id);
 
-            if (vocabulary == null)
-            {
-                return NotFound();
-            }
+        //    if (vocabulary == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return vocabulary;
-        }
+        //    return vocabulary;
+        //}
 
         // PUT: api/Vocabularies/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutVocabulary(int id, Vocabulary vocabulary)
         {
-            if (id != vocabulary.Id)
+            Vocabulary voc = _context.Vocabularies.SingleOrDefault(a => a.Id == id);
+            if (voc is null)
             {
                 return BadRequest();
             }
 
-            _context.Entry(vocabulary).State = EntityState.Modified;
+            voc.English = vocabulary.English;
+            voc.Vietnamese = vocabulary.Vietnamese;
 
+            _context.Entry(voc).State = EntityState.Modified;
+            //_context.Update(vocabulary);
             try
             {
                 await _context.SaveChangesAsync();
@@ -80,7 +87,7 @@ namespace ELearnerApi.Controllers
             _context.Vocabularies.Add(vocabulary);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetVocabulary", new { id = vocabulary.Id }, vocabulary);
+            return NoContent();
         }
 
         // DELETE: api/Vocabularies/5

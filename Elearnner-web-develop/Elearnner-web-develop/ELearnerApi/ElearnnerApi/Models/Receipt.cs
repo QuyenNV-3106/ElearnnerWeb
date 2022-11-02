@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace ElearnerApi.Models
+namespace ELearnerApi.Models
 {
     public partial class Receipt
     {
@@ -15,6 +15,6 @@ namespace ElearnerApi.Models
         public string Status { get; set; }
 
         public virtual Course Course { get; set; }
-        public virtual Account User { get; set; }
+        public virtual Accounts User { get; set; }
     }
 }

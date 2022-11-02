@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace ElearnerApi.Models
+namespace ELearnerApi.Models
 {
     public partial class ElearnnerDBContext : DbContext
     {
@@ -17,7 +17,7 @@ namespace ElearnerApi.Models
         {
         }
 
-        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Accounts> Accounts { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Receipt> Receipts { get; set; }
         public virtual DbSet<Topic> Topics { get; set; }
@@ -36,7 +36,7 @@ namespace ElearnerApi.Models
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<Account>(entity =>
+            modelBuilder.Entity<Accounts>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -102,6 +102,16 @@ namespace ElearnerApi.Models
                 entity.Property(e => e.Status)
                     .HasMaxLength(100)
                     .HasColumnName("status");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnName("name"); 
+
+                entity.Property(e => e.Time)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnName("time");
             });
 
             modelBuilder.Entity<Receipt>(entity =>

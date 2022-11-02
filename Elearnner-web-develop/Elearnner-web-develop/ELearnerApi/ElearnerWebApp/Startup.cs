@@ -1,4 +1,4 @@
-using ElearnerApi.Models;
+using ELearnerApi.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,7 +25,18 @@ namespace ElearnerWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages(options => options.Conventions.AuthorizeFolder("/Topics"));
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AuthorizeFolder("/Topics");
+                options.Conventions.AuthorizeFolder("/TopicsTeacher");
+                options.Conventions.AuthorizeFolder("/Teachers");
+                options.Conventions.AuthorizeFolder("/Courses");
+                options.Conventions.AllowAnonymousToPage("/Account/assets");
+                //options.Conventions.AddPageRoute("/Courses", "/Courses/CourseList"); ;
+            }
+            );
+
+
             services.AddDbContext<ElearnnerDBContext>(options =>
     options.UseSqlServer(Configuration.GetConnectionString("ElearnnerDB")));
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();

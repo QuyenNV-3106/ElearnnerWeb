@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace ElearnerApi.Models
+namespace ELearnerApi.Models
 {
     public partial class Topic
     {
         public Topic()
         {
-            Accounts = new HashSet<Account>();
+            Accounts = new HashSet<Accounts>();
         }
 
         public int Id { get; set; }
@@ -20,6 +20,6 @@ namespace ElearnerApi.Models
         public string MeetUrl { get; set; }
         public string Status { get; set; }
 
-        public virtual ICollection<Account> Accounts { get; set; }
+        public virtual ICollection<Accounts> Accounts { get; set; }
     }
 }

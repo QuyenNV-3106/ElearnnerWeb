@@ -7,22 +7,22 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ELearnerApi.Models;
 
-namespace ElearnerWebApp.Pages.TopicsTeacher
+namespace ElearnerWebApp.Pages.Courses
 {
-    public class TopicTeacherModel : PageModel
+    public class CourseListModel : PageModel
     {
-        private readonly ElearnnerDBContext _context;
+        private readonly ELearnerApi.Models.ElearnnerDBContext _context;
 
-        public TopicTeacherModel(ElearnnerDBContext context)
+        public CourseListModel(ELearnerApi.Models.ElearnnerDBContext context)
         {
             _context = context;
         }
 
-        public IList<Topic> Topic { get;set; }
+        public IList<Course> Course { get;set; }
 
         public async Task OnGetAsync()
         {
-            Topic = await _context.Topics.ToListAsync();
+            Course = await _context.Courses.ToListAsync();
         }
     }
 }

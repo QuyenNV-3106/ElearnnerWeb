@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElearnerApi.Models
+namespace ElearnnerApi.Models
 {
-    public class Role
+    public class Kindd
     {
         public int Id { get; set; }
-        public string RoleName { get; set; }
-        public static string RoleNameCheck { get; set; } = "";
+        public string Kind { get; set; }
     }
 }

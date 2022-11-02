@@ -7,19 +7,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ELearnerApi.Models;
 
-namespace ElearnerWebApp.Pages.Topics
+namespace ElearnerWebApp.Pages.Courses
 {
     public class DeleteModel : PageModel
     {
-        private readonly ElearnnerDBContext _context;
+        private readonly ELearnerApi.Models.ElearnnerDBContext _context;
 
-        public DeleteModel(ElearnnerDBContext context)
+        public DeleteModel(ELearnerApi.Models.ElearnnerDBContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Topic Topic { get; set; }
+        public Course Course { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,9 @@ namespace ElearnerWebApp.Pages.Topics
                 return NotFound();
             }
 
-            Topic = await _context.Topics.FirstOrDefaultAsync(m => m.Id == id);
+            Course = await _context.Courses.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Topic == null)
+            if (Course == null)
             {
                 return NotFound();
             }
@@ -44,11 +44,11 @@ namespace ElearnerWebApp.Pages.Topics
                 return NotFound();
             }
 
-            Topic = await _context.Topics.FindAsync(id);
+            Course = await _context.Courses.FindAsync(id);
 
-            if (Topic != null)
+            if (Course != null)
             {
-                _context.Topics.Remove(Topic);
+                _context.Courses.Remove(Course);
                 await _context.SaveChangesAsync();
             }
 

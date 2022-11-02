@@ -7,19 +7,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ELearnerApi.Models;
 
-namespace ElearnerWebApp.Pages.Topics
+namespace ElearnerWebApp.Pages.Teachers
 {
     public class DeleteModel : PageModel
     {
-        private readonly ElearnnerDBContext _context;
+        private readonly ELearnerApi.Models.ElearnnerDBContext _context;
 
-        public DeleteModel(ElearnnerDBContext context)
+        public DeleteModel(ELearnerApi.Models.ElearnnerDBContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Topic Topic { get; set; }
+        public ELearnerApi.Models.Accounts Account { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,10 @@ namespace ElearnerWebApp.Pages.Topics
                 return NotFound();
             }
 
-            Topic = await _context.Topics.FirstOrDefaultAsync(m => m.Id == id);
+            Account = await _context.Accounts
+                .Include(a => a.Topic).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Topic == null)
+            if (Account == null)
             {
                 return NotFound();
             }
@@ -44,15 +45,16 @@ namespace ElearnerWebApp.Pages.Topics
                 return NotFound();
             }
 
-            Topic = await _context.Topics.FindAsync(id);
+            Account = await _context.Accounts.FindAsync(id);
 
-            if (Topic != null)
+            if (Account != null)
             {
-                _context.Topics.Remove(Topic);
+                Account.Status = "disable";
+                _context.Attach(Account).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Teachers/Index");
         }
     }
 }
