@@ -7,18 +7,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ELearnerApi.Models;
 
-namespace ElearnerWebApp.Pages.Teachers
+namespace ElearnerWebApp.Pages.Customers
 {
     public class IndexModel : PageModel
     {
-        private readonly ELearnerApi.Models.ElearnnerDBContext _context;
+        private readonly ElearnnerDBContext _context;
 
-        public IndexModel(ELearnerApi.Models.ElearnnerDBContext context)
+        public IndexModel(ElearnnerDBContext context)
         {
             _context = context;
         }
 
-        public IList<ELearnerApi.Models.Account> Account { get; set; }
+        public IList<ELearnerApi.Models.Account> Accounts { get;set; }
 
         public IActionResult OnGetAsync()
         {
@@ -32,10 +32,10 @@ namespace ElearnerWebApp.Pages.Teachers
 
             }
             var a = from account in _context.Accounts
-                    where account.Role == "teacher"
+                    where account.Role == "user"
                     select account;
 
-            Account = a
+            Accounts = a
                 .Include(a => a.Topic).ToList();
             return Page();
         }

@@ -12,6 +12,6 @@ namespace ELearnerApi.Models
         public string English { get; set; }
         public string Vietnamese { get; set; }
 
-        public virtual Accounts User { get; set; }
+        public virtual Account User { get; set; }
     }
 }

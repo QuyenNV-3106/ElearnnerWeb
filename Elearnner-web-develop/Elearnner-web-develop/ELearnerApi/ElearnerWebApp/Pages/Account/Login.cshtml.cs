@@ -65,7 +65,7 @@ namespace ElearnerWebApp.Pages.Account
         }
 
         [BindProperty]
-        public ELearnerApi.Models.Accounts Account { get; set; }
+        public ELearnerApi.Models.Account Account { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -100,7 +100,7 @@ namespace ElearnerWebApp.Pages.Account
                     }
                     if (user.Role == "user")
                     {
-                        return RedirectToPage("/Index");
+                        return RedirectToPage("/Courses/CourseList");
                     }
                     if (user.Role == "teacher")
                     {

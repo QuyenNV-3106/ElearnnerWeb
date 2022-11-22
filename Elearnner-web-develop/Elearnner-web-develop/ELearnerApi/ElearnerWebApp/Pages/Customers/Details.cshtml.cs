@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ELearnerApi.Models;
 
-namespace ElearnerWebApp.Pages.Teachers
+namespace ElearnerWebApp.Pages.Customers
 {
     public class DetailsModel : PageModel
     {
@@ -18,7 +18,7 @@ namespace ElearnerWebApp.Pages.Teachers
             _context = context;
         }
 
-        public ELearnerApi.Models.Account Account { get; set; }
+        public ELearnerApi.Models.Account Accounts { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,10 +27,10 @@ namespace ElearnerWebApp.Pages.Teachers
                 return NotFound();
             }
 
-            Account = await _context.Accounts
+            Accounts = await _context.Accounts
                 .Include(a => a.Topic).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Account == null)
+            if (Accounts == null)
             {
                 return NotFound();
             }

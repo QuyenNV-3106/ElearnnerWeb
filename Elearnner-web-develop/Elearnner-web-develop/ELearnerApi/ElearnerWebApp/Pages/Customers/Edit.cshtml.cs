@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ELearnerApi.Models;
 
-namespace ElearnerWebApp.Pages.Teachers
+namespace ElearnerWebApp.Pages.Customers
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace ElearnerWebApp.Pages.Teachers
         }
 
         [BindProperty]
-        public ELearnerApi.Models.Account Account { get; set; }
+        public ELearnerApi.Models.Account Accounts { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,14 +29,14 @@ namespace ElearnerWebApp.Pages.Teachers
                 return NotFound();
             }
 
-            Account = await _context.Accounts
+            Accounts = await _context.Accounts
                 .Include(a => a.Topic).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Account == null)
+            if (Accounts == null)
             {
                 return NotFound();
             }
-            ViewData["TopicId"] = new SelectList(_context.Topics, "Id", "ImgUrl");
+           ViewData["TopicId"] = new SelectList(_context.Topics, "Id", "ImgUrl");
             return Page();
         }
 
@@ -44,19 +44,12 @@ namespace ElearnerWebApp.Pages.Teachers
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            ELearnerApi.Models.Account account = new ELearnerApi.Models.Account();
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            if (_context.Accounts.SingleOrDefault(p => p.Email == Account.Email) is not null)
-            {
-                ViewData["msg"] = "Duplicate email";
-                return Page();
-            }
-
-            _context.Attach(Account).State = EntityState.Modified;
+            _context.Attach(Accounts).State = EntityState.Modified;
 
             try
             {
@@ -64,7 +57,7 @@ namespace ElearnerWebApp.Pages.Teachers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccountExists(Account.Id))
+                if (!AccountsExists(Accounts.Id))
                 {
                     return NotFound();
                 }
@@ -77,7 +70,7 @@ namespace ElearnerWebApp.Pages.Teachers
             return RedirectToPage("./Index");
         }
 
-        private bool AccountExists(int id)
+        private bool AccountsExists(int id)
         {
             return _context.Accounts.Any(e => e.Id == id);
         }

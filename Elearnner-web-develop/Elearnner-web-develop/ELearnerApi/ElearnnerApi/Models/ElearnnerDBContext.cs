@@ -17,7 +17,7 @@ namespace ELearnerApi.Models
         {
         }
 
-        public virtual DbSet<Accounts> Accounts { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Receipt> Receipts { get; set; }
         public virtual DbSet<Topic> Topics { get; set; }
@@ -36,7 +36,7 @@ namespace ELearnerApi.Models
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<Accounts>(entity =>
+            modelBuilder.Entity<Account>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("id");
 

@@ -6,21 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ELearnerApi.Models;
+using ElearnnerApi;
 
-namespace ElearnerWebApp.Pages.Accounts
+namespace ElearnerWebApp.Pages.Customers
 {
-    public class RegisterModel : PageModel
+    public class CreateModel : PageModel
     {
         private readonly ELearnerApi.Models.ElearnnerDBContext _context;
 
-        public RegisterModel(ELearnerApi.Models.ElearnnerDBContext context)
+        public CreateModel(ELearnerApi.Models.ElearnnerDBContext context)
         {
             _context = context;
         }
 
         public IActionResult OnGet()
         {
-        ViewData["TopicId"] = new SelectList(_context.Topics, "Id", "ImgUrl");
+        ViewData["status"] = new SelectList(AutoGenerate.GenerateStatusUser(), "Kind", "Kind");
             return Page();
         }
 
@@ -35,18 +36,10 @@ namespace ElearnerWebApp.Pages.Accounts
                 return Page();
             }
 
-            if (_context.Accounts.SingleOrDefault(p => p.Email == Accounts.Email) is not null)
-            {
-                ViewData["msg"] = "Duplicate email";
-                return Page();
-            }
-
-            Accounts.Role = "user";
-            Accounts.Status = "none";
             _context.Accounts.Add(Accounts);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("/Account/Login");
+            return RedirectToPage("./Index");
         }
     }
 }

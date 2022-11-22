@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ELearnerApi.Models
 {
-    public partial class Accounts
+    public partial class Account
     {
-        public Accounts()
+        public Account()
         {
             Receipts = new HashSet<Receipt>();
             Vocabularies = new HashSet<Vocabulary>();

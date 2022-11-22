@@ -6,14 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    @*<link rel="stylesheet" href="~/css/reset.css" />*@
+    <link rel="stylesheet" href="~/css/style.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="icon" type="image/x-icon" href="~/assets/logo.png">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-warning border-bottom box-shadow mb-3 ">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-warning border-bottom box-shadow mb-3 fixed-top">
             <div class="container">
-                <a class="navbar-brand text-white font-weight-bolder" asp-area="" asp-page="/Index"> <img width="50" height="50" src="~/assets/logo.png" /> </a>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a class="navbar-brand text-white font-weight-bolder" asp-area="" asp-page="/Index"> <img width="50" height="50" src="~/assets/logo.png" /> </a>
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a class="navbar-brand text-white font-weight-bolder" asp-area="" asp-page="/Topics/Index"> <img width="50" height="50" src="~/assets/logo.png" /> </a>
+                    }
+                    @if (User.IsInRole("teacher"))
+                    {
+                        <a class="navbar-brand text-white font-weight-bolder" asp-area="" asp-page="/TopicsTeacher/TopicTeacher"> <img width="50" height="50" src="~/assets/logo.png" /> </a>
+                    }
+                    @if (User.IsInRole("user"))
+                    {
+                        <a class="navbar-brand text-white font-weight-bolder" asp-area="" asp-page="/Courses/CourseList"> <img width="50" height="50" src="~/assets/logo.png" /> </a>
+
+                    }
+                }
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -42,15 +64,21 @@
                             {
                                 <li class="nav-item">
 
-                                    <a class="nav-link text-white justify-content-end" asp-area="" asp-page="/Coursers/Index">Coursers</a>
+                                    <a class="nav-link text-white justify-content-end" asp-area="" asp-page="/Courses/Index">Coursers</a>
 
                                 </li>
                                 <li class="nav-item">
 
-                                    <a class="nav-link text-white justify-content-end" asp-area="" asp-page="/Teachers/Index">Accounts</a>
+                                    <a class="nav-link text-white justify-content-end" asp-area="" asp-page="/Teachers/Index">Teachers</a>
 
                                 </li>
-                            }@if (User.IsInRole("user"))
+                                <li class="nav-item">
+
+                                    <a class="nav-link text-white justify-content-end" asp-area="" asp-page="/Customers/Index">Customers</a>
+
+                                </li>
+                            }
+                            @if (User.IsInRole("user"))
                             {
                                 <li class="nav-item">
 
@@ -74,15 +102,50 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    @*<div class="container mt-5">*@
+    <main role="main" class="" style="margin-top: 80px">
+        <div class="">
             @RenderBody()
-        </main>
-    </div>
+        </div>
+    </main>
+    @*</div>*@
 
-    <footer class="border-top footer text-muted">
+    <footer class="pt-4 my-md-5 pt-md-5 border-top h-25">
+        @*<footer class="pt-4 my-md-5 pt-md-5 border-top h-25 bg-light">*@
         <div class="container">
             &copy; 2022 - Eleanner
+
+            <div>
+                <p>
+                    Trụ sở: Trường Đại học FPT TP.HCM Lô E2a-7, Đường D1, Long
+                    Thạnh Mỹ, Thành Phố Thủ Đức, Thành phố Hồ Chí Minh
+                </p>
+                <div>
+                    <p>Hotline: <a href="tel:+84393460787">+84393460787</a></p>
+                    <p>Email: <a href="mailto:elearner.fpt@gmail.com">elearner.fpt@gmail.com</a></p>
+                </div>
+                <div>
+                    <p>
+                        Contact Us: <a class="ml-2 mr-2" href="https://www.instagram.com/elearner_exe/" target="_blank" rel="noopener noreferrer">
+                            <img src="https://static.wixstatic.com/media/9f9c321c774844b793180620472aa4f1.png/v1/fill/w_49,h_49,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/9f9c321c774844b793180620472aa4f1.png"
+                                 alt="" />
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=100086365654006" target="_blank" rel="noopener noreferrer">
+                            <img src="https://static.wixstatic.com/media/e316f544f9094143b9eac01f1f19e697.png/v1/fill/w_49,h_49,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/e316f544f9094143b9eac01f1f19e697.png"
+                                 alt="" />
+                        </a>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Tải app tại:
+                        <a href="https://play.google.com/store/apps/details?id=com.elearner">
+                            <img src="https://static.wixstatic.com/media/fc7570_83a62c92abd54d60915647751731bc62~mv2.png/v1/fill/w_224,h_69,al_c,lg_1,q_85,enc_auto/fc7570_83a62c92abd54d60915647751731bc62~mv2.png"
+                                 alt="" />
+                        </a>
+                    </p>
+                </div>
+            </div>
         </div>
     </footer>
 

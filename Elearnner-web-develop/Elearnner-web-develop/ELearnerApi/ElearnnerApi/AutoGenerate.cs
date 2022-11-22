@@ -9,12 +9,21 @@ namespace ElearnnerApi
 {
     public class AutoGenerate
     {
-        
+
         public static List<Kindd> GenerateKindTopics()
         {
             var kindTopics = new List<Kindd>();
             kindTopics.Add(new Kindd { Kind = "1-1" });
             kindTopics.Add(new Kindd { Kind = "1-2" });
+            return kindTopics;
+        }
+        public static List<Kindd> GenerateStatusUser()
+        {
+            var kindTopics = new List<Kindd>();
+            kindTopics.Add(new Kindd { Kind = "1-1" });
+            kindTopics.Add(new Kindd { Kind = "1-2" });
+            kindTopics.Add(new Kindd { Kind = "disable" });
+            kindTopics.Add(new Kindd { Kind = "none" });
             return kindTopics;
         }
     }

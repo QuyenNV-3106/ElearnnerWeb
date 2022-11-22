@@ -25,7 +25,7 @@ namespace ElearnerWebApp.Pages.Teachers
         }
 
         [BindProperty]
-        public ELearnerApi.Models.Accounts Account { get; set; }
+        public ELearnerApi.Models.Account Account { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()

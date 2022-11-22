@@ -9,7 +9,7 @@ namespace ELearnerApi.Models
     {
         public Topic()
         {
-            Accounts = new HashSet<Accounts>();
+            Accounts = new HashSet<Account>();
         }
 
         public int Id { get; set; }
@@ -20,6 +20,6 @@ namespace ELearnerApi.Models
         public string MeetUrl { get; set; }
         public string Status { get; set; }
 
-        public virtual ICollection<Accounts> Accounts { get; set; }
+        public virtual ICollection<Account> Accounts { get; set; }
     }
 }

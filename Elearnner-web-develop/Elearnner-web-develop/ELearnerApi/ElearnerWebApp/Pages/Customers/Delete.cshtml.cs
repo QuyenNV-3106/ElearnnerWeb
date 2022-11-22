@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ELearnerApi.Models;
 
-namespace ElearnerWebApp.Pages.Teachers
+namespace ElearnerWebApp.Pages.Customers
 {
     public class DeleteModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace ElearnerWebApp.Pages.Teachers
         }
 
         [BindProperty]
-        public ELearnerApi.Models.Account Account { get; set; }
+        public ELearnerApi.Models.Account Accounts { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,10 +28,10 @@ namespace ElearnerWebApp.Pages.Teachers
                 return NotFound();
             }
 
-            Account = await _context.Accounts
+            Accounts = await _context.Accounts
                 .Include(a => a.Topic).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Account == null)
+            if (Accounts == null)
             {
                 return NotFound();
             }
@@ -45,16 +45,15 @@ namespace ElearnerWebApp.Pages.Teachers
                 return NotFound();
             }
 
-            Account = await _context.Accounts.FindAsync(id);
+            Accounts = await _context.Accounts.FindAsync(id);
 
-            if (Account != null)
+            if (Accounts != null)
             {
-                Account.Status = "disable";
-                _context.Attach(Account).State = EntityState.Modified;
+                _context.Accounts.Remove(Accounts);
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("/Teachers/Index");
+            return RedirectToPage("./Index");
         }
     }
 }

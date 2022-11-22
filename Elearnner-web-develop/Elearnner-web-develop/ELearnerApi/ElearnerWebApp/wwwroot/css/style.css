@@ -1,0 +1,310 @@
+﻿body {
+}
+
+.wrapper {
+}
+
+
+main .banner {
+    height: 1000px;
+    /*background-color: #cccccc;*/
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: inherit;
+    background-image: url('https://static.wixstatic.com/media/11062b_8e967e6cca8b4d5bbb6e96733fc92e92~mv2.jpeg/v1/fit/w_1489,h_1000/11062b_8e967e6cca8b4d5bbb6e96733fc92e92~mv2.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat
+}
+
+    main .banner h1 {
+        font-size: 166px;
+    }
+
+    main .banner h3 {
+        font-size: 24px;
+    }
+
+main .about {
+    display: flex;
+    height: 700px;
+}
+
+    main .about .about-text {
+        padding: 120px 40px;
+        width: 100%;
+        background-color: #f6f6f6;
+    }
+
+        main .about .about-text h4 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 32px;
+        }
+
+        main .about .about-text span {
+            font-size: 24px;
+        }
+
+        main .about .about-text ul li {
+            margin-left: 32px;
+        }
+
+    main .about .about-image1 {
+        background-color: goldenrod;
+        width: 100%;
+        height: auto;
+        background-image: url('https://static.wixstatic.com/media/11062b_c7cbf450bed141669a0e5e4bfc2143fb~mv2.jpg/v1/fill/w_730,h_700,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/11062b_c7cbf450bed141669a0e5e4bfc2143fb~mv2.jpg');
+        background-size: cover;
+        background-repeat: no-repeat
+    }
+
+    main .about .about-image2 {
+        background-color: goldenrod;
+        width: 100%;
+        background-image: url('https://static.wixstatic.com/media/927ffc_ac4a536ff4c54f1297a525367f5bed79~mv2.jpeg/v1/fill/w_730,h_700,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/927ffc_ac4a536ff4c54f1297a525367f5bed79~mv2.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat
+    }
+
+/*main .container {
+    width: 100%;*/
+/*max-width: 1200px;*/
+/*margin: 0 auto;
+}*/
+
+main .team,
+main .reason,
+main .commit,
+main .subject,
+main .download,
+main .contact {
+    padding: 80px 0;
+    text-align: center;
+}
+
+main .reason {
+    background-color: #bde9fb;
+}
+
+main h3 {
+    font-size: 46px;
+    margin-bottom: 80px;
+}
+
+main .commit h3 {
+    margin-bottom: 0;
+}
+
+main .container .list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 160px;
+}
+
+    main .container .list .item {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 240px;
+        gap: 24px;
+        align-self: stretch;
+        font-size: 24px;
+    }
+
+        main .container .list .item .img1 {
+            width: 200px;
+            height: 200px;
+            border-radius: 100rem;
+            background-color: grey;
+            background-image: url('https://static.wixstatic.com/media/8d13be_8c9171d931e04e32bb29cd0d41aaec56.jpg/v1/fill/w_270,h_271,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/8d13be_8c9171d931e04e32bb29cd0d41aaec56.jpg');
+            background-size: cover;
+            background-repeat: no-repeat
+        }
+
+        main .container .list .item .img2 {
+            width: 200px;
+            height: 200px;
+            border-radius: 100rem;
+            background-color: grey;
+            background-image: url('https://static.wixstatic.com/media/8d13be_823ed7dfb3484ce3b731ee9f43e002be.jpg/v1/fill/w_270,h_271,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/8d13be_823ed7dfb3484ce3b731ee9f43e002be.jpg');
+            background-size: cover;
+            background-repeat: no-repeat
+        }
+
+        main .container .list .item .img3 {
+            width: 200px;
+            height: 200px;
+            border-radius: 100rem;
+            background-color: grey;
+            background-image: url('https://static.wixstatic.com/media/8d13be_d18869067c9846de9d6493c7ab35ec4f.jpg/v1/fill/w_263,h_271,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/8d13be_d18869067c9846de9d6493c7ab35ec4f.jpg');
+            background-size: cover;
+            background-repeat: no-repeat
+        }
+
+        main .container .list .item .icon {
+            width: 50px;
+            height: 50px;
+        }
+
+.italic {
+    font-style: italic !important;
+}
+
+.bold {
+    font-weight: 700 !important;
+}
+
+main .commit {
+    background-color: #6d97a2;
+    color: white;
+}
+
+    main .commit .container {
+        padding: 0 80px;
+        font-weight: 700;
+    }
+
+    main .commit p {
+        font-size: 20px;
+        margin-top: 16px;
+    }
+
+        main .commit p:first-of-type {
+            word-spacing: 4px;
+        }
+
+main .subject {
+    background-color: #1d67cd;
+    color: white;
+}
+
+    main .subject .action {
+        margin-top: 16px;
+    }
+
+        main .subject .action button {
+            padding: 16px 32px;
+            border-radius: 24px;
+            background-color: #bde9fb;
+            border: none;
+            word-spacing: 4px;
+            font-size: 20px;
+        }
+
+            main .subject .action button:hover {
+                background-color: #1d67cd;
+                color: white;
+                border: 1px solid white;
+                font-size: 18px;
+            }
+
+main .download .channel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+    main .download .channel .action {
+        display: flex;
+        gap: 16px;
+    }
+
+    main .download .channel h3 {
+        margin-bottom: 16px;
+    }
+
+main .download .preview > main {
+    height: 500px;
+    width: 300px;
+    background-color: grey;
+}
+
+main .contact {
+    border-top: 2px solid gray;
+    background-color: whitesmoke;
+    /*padding-bottom: 10px;*/
+}
+
+    main .contact .contact-list {
+        display: flex;
+        gap: 160px;
+    }
+
+    main .contact .contact-left {
+        /*margin-top: 100px;*/
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        gap: 16px;
+        font-size: 24px;
+    }
+
+        main .contact .contact-left > p:last-of-type {
+            width: max-content;
+            background-color: black;
+            color: white;
+            margin-left: 54px;
+        }
+
+        main .contact .contact-left .img {
+            display: flex;
+            gap: 16px;
+            margin-left: 54px;
+        }
+
+    main .contact .contact-item {
+        width: 50%;
+    }
+
+    main .contact .contact-right {
+        width: 100%;
+        background-color: #fff;
+        padding: 48px 40px;
+        text-align: left;
+        color: #522662;
+    }
+
+        main .contact .contact-right .input {
+            margin-top: 32px;
+        }
+
+            main .contact .contact-right .input label,
+            main .contact .contact-right .input input {
+                display: block;
+                margin-bottom: 4px;
+            }
+
+            main .contact .contact-right .input input {
+                margin-bottom: 16px;
+                width: 100%;
+                padding: 10px;
+                background-color: #ffde5f;
+                border: none;
+            }
+
+                main .contact .contact-right .input input:focus {
+                    background-color: #ffe88f;
+                }
+
+        main .contact .contact-right h4 {
+            font-size: 36px;
+        }
+
+        main .contact .contact-right .action button {
+            margin-top: 32px;
+            padding: 24px 64px;
+            border: none;
+            font-size: 20px;
+            background-color: #522662;
+            color: white;
+        }
+
+            main .contact .contact-right .action button:hover {
+                background-color: #866791;
+            }
